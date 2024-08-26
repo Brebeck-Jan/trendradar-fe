@@ -7,8 +7,11 @@ import { ref } from 'vue';
 const listItems = ref("");
 
 async function getData() {
-  const res = await fetch("https://trendradar-be.azurewebsites.net/first ");
-  const finalRes = await res.json();
+  const res = (await fetch("api/first ", {headers:{
+'Content-Type': 'application/json;charset=UTF-8',
+    'Access-Control-Allow-Origin': '*' 
+  }}))
+  const finalRes = await res.text()
   listItems.value = finalRes;
   console.log(listItems.value)
 }
@@ -22,6 +25,8 @@ getData()
 
     <div class="wrapper">
       <HelloWorld msg="Jan did it!" />
+      <h1>TEST</h1>
+      <p>{{ listItems }}</p>
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
