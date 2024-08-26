@@ -13,7 +13,6 @@ dist
 dist-ssr
 coverage
 *.local
-resume-website.iml
 
 /cypress/videos/
 /cypress/screenshots/
@@ -22,7 +21,6 @@ resume-website.iml
 .vscode/*
 !.vscode/extensions.json
 .idea
-.idea/*
 *.suo
 *.ntvs*
 *.njsproj
