@@ -1,6 +1,19 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+
+import { ref } from 'vue';
+
+const listItems = ref("");
+
+async function getData() {
+  const res = await fetch("https://trendradar-be.azurewebsites.net/first ");
+  const finalRes = await res.json();
+  listItems.value = finalRes;
+  console.log(listItems.value)
+}
+
+getData()
 </script>
 
 <template>
@@ -9,7 +22,6 @@ import HelloWorld from './components/HelloWorld.vue'
 
     <div class="wrapper">
       <HelloWorld msg="Jan did it!" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
