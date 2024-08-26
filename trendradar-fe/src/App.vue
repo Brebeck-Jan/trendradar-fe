@@ -7,10 +7,18 @@ import { ref } from 'vue';
 const listItems = ref("");
 
 async function getData() {
-  const res = (await fetch("api/first ", {headers:{
-'Content-Type': 'application/json;charset=UTF-8',
-    'Access-Control-Allow-Origin': '*' 
-  }}))
+  // const res = (await fetch("api/first "))
+
+//   const myHeaders = new Headers();
+// myHeaders.append('Content-Type', 'application/json');
+// myHeaders.append('Access-Control-Allow-Origin', '*');
+
+const res = (await fetch('https://trendradar-be.azurewebsites.net/first'))
+// , {
+//   method: 'GET',
+//   headers: myHeaders,
+// }))
+  
   const finalRes = await res.text()
   listItems.value = finalRes;
   console.log(listItems.value)
