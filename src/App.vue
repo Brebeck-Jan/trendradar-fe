@@ -9,15 +9,17 @@ const listItems = ref("");
 async function getData() {
   // const res = (await fetch("api/first "))
 
-//   const myHeaders = new Headers();
-// myHeaders.append('Content-Type', 'application/json');
-// myHeaders.append('Access-Control-Allow-Origin', '*');
+  const myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'application/json');
+  myHeaders.append('Access-Control-Allow-Origin', '*');
+  myHeaders.append('Access-Control-Allow-Origin', '*'); // Allow all origins or specify your domain
+  myHeaders.append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  myHeaders.append('Access-Control-Allow-Headers', 'Content-Type');
 
-const res = (await fetch('https://trendradar-be.azurewebsites.net/first'))
-// , {
-//   method: 'GET',
-//   headers: myHeaders,
-// }))
+const res = (await fetch('https://trendradar-be.azurewebsites.net/first', {
+  method: 'GET',
+  headers: myHeaders,
+}))
   
   const finalRes = await res.text()
   listItems.value = finalRes;
