@@ -1,29 +1,12 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import {RouterLink, RouterView} from 'vue-router'
 
-import { ref } from 'vue';
+import {ref} from 'vue';
 
 const listItems = ref("");
 
 async function getData() {
-  // const res = (await fetch("api/first "))
-
-  const myHeaders = new Headers();
-  myHeaders.append('Content-Type', 'application/json');
-  myHeaders.append('Access-Control-Allow-Origin', '*');
-  myHeaders.append('Access-Control-Allow-Origin', '*'); // Allow all origins or specify your domain
-  myHeaders.append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  myHeaders.append('Access-Control-Allow-Headers', 'Content-Type');
-
-const res = (await fetch('https://trendradar-be.azurewebsites.net/first', {
-  method: 'GET',
-  headers: myHeaders,
-}))
-  
-  const finalRes = await res.text()
-  listItems.value = finalRes;
-  console.log(listItems.value)
+  listItems.value = await (await fetch('https://trendradar-be.azurewebsites.net/first')).text()
 }
 
 getData()
@@ -31,11 +14,9 @@ getData()
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125"/>
     <div class="wrapper">
-      <HelloWorld msg="Really? did it!" />
-      <h1>TEST</h1>
+      <h1>DATA OUTPUT: </h1>
       <p>{{ listItems }}</p>
       <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -44,7 +25,7 @@ getData()
     </div>
   </header>
 
-  <RouterView />
+  <RouterView/>
 </template>
 
 <style scoped>
